@@ -12,21 +12,24 @@
 # print(cities[-3:-1])
 # print(cities[:-1])
 
-color1 = ['red', 'green', 'black']
-color2 = ['blue', 'pink', 'orange']
+# color1 = ['red', 'green', 'black']
+# color2 = ['blue', 'pink', 'orange']
 
-total_color = color1 + color2
+# total_color = color1 + color2
 
-c1, c2, c3, c4, c5, c6 = total_color
-print(c1, c2, c3, c4, c5, c6)
+# c1, c2, c3, c4, c5, c6 = total_color
+# print(c1, c2, c3, c4, c5, c6)
 
-a = [1,2,3,4,5]
-a.append(10)
-print(a)
+# a = [1,2,3,4,5]
+# a.append(10)
+# print(a)
 
-b = [100, 200, 300]
-a.extend(b)
-print(a)
+# b = [100, 200, 300]
+# a.extend(b)
+# print(a)
 
-a.pop()
-print(a)
+# a.pop()
+# print(a)
+
+life = [['canada', 76.5], ['us', 75.5], ['mexico', 72.0]]
+print(life[-1])
