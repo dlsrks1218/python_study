@@ -111,6 +111,6 @@ items()
 f = lambda x, y: x + y
 print(f(1, 4))
 
-# dictionary.items()[1]는 dictionary의 value
-sorted(dictionary.items(), key = lambda x: x[1][-1], reverse=True)
+# dictionary.items()[1]를 dictionary의 value로 정렬
+sorted(dictionary.items(), key = lambda x: x[1], reverse=True)
 ```
