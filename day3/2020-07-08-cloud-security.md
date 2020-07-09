@@ -77,7 +77,15 @@ clear()
 
 * Key는 유일해야 함  
 
-* 딕셔너리는 순서가 없음  
+* 딕셔너리는 순서가 없음 
+
+```python
+keys()
+values()
+# tuple 형태의 아이템들의 리스트 출력
+items()
+
+```
 
 ## 반복문 Loop  
 
@@ -89,3 +97,20 @@ clear()
 
 * 횟수  
 
+## 람다 함수(Lambda Function)  
+
+### 람다 함수 -> 함수형 프로그래밍  
+
+* 함수의 이름 없이, 함수처럼 사용할 수 있는 익명의 함수  
+
+* 이름 지정 없이 사용 가능  
+
+* lambda (Parameter): (수행할 동작)  
+
+```python
+f = lambda x, y: x + y
+print(f(1, 4))
+
+# dictionary.items()[1]는 dictionary의 value
+sorted(dictionary.items(), key = lambda x: x[1][-1], reverse=True)
+```
