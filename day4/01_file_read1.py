@@ -4,10 +4,17 @@
 import os
 
 file_dir = os.getcwd() + '/python/day4/file_example.txt'
-file = open(file_dir, 'r', encoding='utf-8')
-# file = open(file_dir, 'r', encoding='cp949')
-print(file)
 
-contents = file.read()
-file.close()
-print(contents)
+# file = open(file_dir, 'r', encoding='utf-8')
+# print(file)
+# contents = file.read()
+# # 리소스 해제가 꼭 필요함
+# file.close()
+# print(contents)
+
+# 리소스 자동 해제해줌
+with open(file_dir, 'r', encoding='utf-8') as file:
+    print(file)
+    contents = file.read()
+    print(contents)
+
