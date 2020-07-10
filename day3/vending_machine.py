@@ -1,3 +1,9 @@
+"""
+추가 사항
+1. 구매 후 돈을 더 넣을 수 있는 선택지 추가
+2. 거스름돈 패턴에 빠진 경우의 수 존재함
+"""
+
 def check_affordable(my_money: int) -> dict:
     # print('현재 가진 금액 : {}'.format(my_money))
     affordable_dict = {}
