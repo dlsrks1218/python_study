@@ -1,0 +1,4 @@
+first line of text
+텍스트 파일의 첫째 줄입니다.
+second line of text
+third line of text
