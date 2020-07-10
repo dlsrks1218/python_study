@@ -1,3 +1,4 @@
+# glob -> 가지고 있는 작업 경로에서 <조건에 맞는> 파일을 다 읽어옴
 # basic08.py
 import glob, csv, sys, os
 

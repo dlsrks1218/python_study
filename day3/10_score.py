@@ -1,6 +1,3 @@
-# 반환값을 리스트로 저장하기 위한 클래스
-# from typing import List
-
 # 국 영 수 총점 평균 석차 구하기
 # 1. 입력
 # 2. 출력
@@ -9,7 +6,7 @@
 # 5. 읽어오기
 # 9. 종료
 
-import os
+import os, sys, csv
 
 def enter_score(score):
     """
@@ -97,8 +94,8 @@ def load_all_score(score: dict) ->dict:
         for line in file:
             _values = line.rstrip().split(',')
             load_score[_values[0]] = [_values[1], _values[2], _values[3], _values[4], _values[5]]
-    for item in load_score.items():
-        print(item)
+    # for item in load_score.items():
+        # print(item)
     return load_score
 
 def seperate_score(data: list):
@@ -107,6 +104,20 @@ def seperate_score(data: list):
         result += str(data[_num]) + '\t'
     return result + ('%.4f' %(data[len(data) - 1]))
 
+def generate_report(input_file: str, output_file: str):
+    header_list = ['이름', '총점', '평균']
+    my_columns = [0, 4, 5] # USER1,100,90,80,270,90.00,
+    with open(input_file, 'r', newline='') as csv_in_file:
+        with open(output_file, 'w', newline='') as csv_out_file:
+            filereader = csv.reader(csv_in_file) 
+            filewriter = csv.writer(csv_out_file)
+            filewriter.writerow(header_list)
+            for row in filereader: 
+                row_list_output = []
+                for index_value in my_columns:
+                    row_list_output.append(row[index_value])
+                filewriter.writerow(row_list_output)
+
 def start():
     score = {}
     while True:
@@ -114,7 +125,7 @@ def start():
         # 1~4만 허용
         # 입력값을 int()로 casting
         cmd = int(input('1) 성적 입력 2) 성적 출력 3) 성적 조회 4) 저장하기 \
-            5) 읽어오기 9) 종료\n입력은 (1~9) 사이 숫자로 해주세요 -> '))
+            5) 읽어오기 6) 리포트 출력 9) 종료\n입력은 (1~9) 사이 숫자로 해주세요 -> '))
         if cmd == 1:
             score = enter_score(score)
             score = dict(calc_score(score))
@@ -138,6 +149,13 @@ def start():
         elif cmd == 5:
             load_all_score(score)
             print('### 파일을 읽어왔습니다.')
+        elif cmd == 6:
+            # dir = os.path.dirname(os.path.realpath(__file__))
+            dir = os.getcwd()
+            input_file = dir + '/day3/score.dat'
+            output_file = dir + '/day3/report.csv'
+            generate_report(input_file, output_file)
+            print('### 리포트를 생성했습니다.')
         elif cmd == 9:
             quit()
         else:

@@ -8,7 +8,7 @@ dir = os.path.dirname(os.path.realpath(__file__))
 input_file = dir + '/supplier_data.csv'
 output_file = dir + '/output/output4.csv'
 
-# 001- 
+# 001- 로 시작하고 . 뒤에는 아무거나 와도 상관없음
 pattern = re.compile(r'(?P<my_pattern_group>^001-.*)', re.I)
 
 with open(input_file, 'r', newline='') as csv_in_file:

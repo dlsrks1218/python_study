@@ -8,6 +8,7 @@ dir = os.path.dirname(os.path.realpath(__file__))
 input_file = dir + '/supplier_data.csv'
 output_file = dir + '/output/output6.csv'
 
+# 열값에 헤더 이름을 정해주기
 my_columns = ['Invoice Number', 'Purchase Date']
 my_columns_index = []
 
