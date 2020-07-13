@@ -51,7 +51,7 @@ def print_result(cnt: int) -> None:
     else:
         print('게임에 소질이 없습니다')
 
-def number_baseball_start():
+def number_baseball_start() -> None:
     com_num, user_num = '', '' 
     # 게임 시작
     print('숫자 야구 게임을 시작하겠습니다.')
