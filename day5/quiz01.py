@@ -34,11 +34,13 @@ def word_count(input_dir, output_dir):
                     # 알파벳이 아닌 것들은 모두 특수문자 -> 구분자(delimeter)
                     if ord(ch) not in chk:
                         delimeter.add(ch)
-    # print(delimeter)
+    print('구분자 : {}'.format(delimeter))
 
-    # 중복 포함 모든 단어 구하기 -> entire_word에 추가
-    entire_word = []
-    with open(input_dir, 'r', encoding='utf-8') as input_file:
+    # 위에서 구분자를 구하기 위해 한번 input_file 객체가 파일 순회를 1회 마쳤기에 새로 open()
+    with open(input_dir, 'r', encoding='utf-8') as input_file, \
+        open(output_dir, 'w', encoding='utf-8') as output_file:
+        # 중복 포함 모든 단어 구하기 -> entire_word에 추가
+        entire_word = []
         for line in input_file:
             for deli in delimeter:
                 if deli in line:
@@ -49,25 +51,24 @@ def word_count(input_dir, output_dir):
             # 모든 단어의 중복을 제거하기위해 word_set에 추
             for word in tmp_line:
                 word_set.add(word)
-
+        # print(entire_word)
+        # 단어 집합 초기화
         for word in word_set:
             word_dict[word] = 0
 
+        # count를 통해 빈도 세어 딕셔너리에 추가
         for key, val in word_dict.items():
             word_dict[key] = entire_word.count(key)
-    
-    # print(entire_word)      
-    # print(word_dict)
-    
-    # 최다 빈출 단어, 빈도 출력
-    for key, val in word_dict.items():
-        if val == max(word_dict.values()):
-            print('최다 빈출 단어 -> {} : {}'.format(key, val))
-        # if val == min(word_dict.values()):
-        #     print('최소 빈출 단어 -> {} : {}'.format(key, val))
-    
-    # output_file에 결과 쓰기
-    with open(output_dir, 'w', encoding='utf-8') as output_file:
+        print(word_dict)
+        
+        # 최다 빈출 단어, 빈도 출력
+        for key, val in word_dict.items():
+            if val == max(word_dict.values()):
+                print('최다 빈출 단어 -> {} : {}'.format(key, val))
+            # if val == min(word_dict.values()):
+            #     print('최소 빈출 단어 -> {} : {}'.format(key, val))
+        
+        # output_file에 결과 쓰기
         word_dict = sorted(word_dict.items())
         for item in word_dict:
             output_file.write(str(item))
