@@ -7,7 +7,7 @@ def check_sb(com_num: str, user_num: str) -> Tuple[int, int]:
         # 자리와 수 모두 일치하면 strike
         if com_num[i] == user_num[i]:
             strike += 1
-        # 자리가 일치하지 않을 때 수가 존재만 할 때 ball
+        # 자리가 일치하지 않을 때, 수가 존재만 할 때 ball
         else:
             if com_num[i] in user_num:
                 ball += 1
@@ -39,7 +39,7 @@ def refine_user_num(user_num: str) -> str:
             user_num = user_num.replace(delimeter, '')
     return user_num
 
-def print_result(cnt: int):
+def print_result(cnt: int) -> None:
     # 정답 맞추는 데 소요된 횟수 출력
     print('{}번만에 맞추셨습니다.'.format(cnt))    
     if cnt >= 1 and cnt <= 5:

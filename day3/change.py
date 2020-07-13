@@ -29,13 +29,12 @@ def get_change_list(my_money: int):
                 change_list = change_list[cnt+1:]
                 break
             cnt += 1
-
         
         result.append(change_cnt)
     
     return result
 
-result = get_change_list(5500)
+result = get_change_list(2000)
 
 for item in result:
     for k, v in item.items():
