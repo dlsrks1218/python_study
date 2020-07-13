@@ -3,9 +3,13 @@ from typing import List
 
 def get_ascii() -> List[int]:
     """ 특수 문자를 걸러내기 위한 아스키코드로 된 리스트 반환
+
     upper -> 'A' ~ 'Z'에 해당하는 아스키코드
     small -> 'a' ~ 'z'에 해당하는 아스키코드
     chk = upper + small에 ['š', 'ď', 'é']에 해당하는 아스키코드 추가
+
+    Args:
+        List[int]: 알파벳과 'š', 'ď', 'é'의 아스키코드로 된 리스트 반환
     """
     upper = [i for i in range(65, 91)]
     small = [i for i in range(97, 123)]
@@ -15,7 +19,13 @@ def get_ascii() -> List[int]:
     return chk
 
 
-def word_count(input_dir, output_dir):
+def word_count(input_dir: str, output_dir: str) -> None:
+    """모든 단어의 빈도 세기
+
+    Args:
+        input_dir (str): 단어의 빈도를 셀 input 파일
+        output_dir (str): 계산된 빈도를 기록할 output 파일
+    """
     # 모든 단어의 집합 (중복 X)
     word_set = set()
     # 중복 없는 모든 단어들의 빈도를 담은 딕셔너리

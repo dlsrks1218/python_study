@@ -20,7 +20,7 @@ def get_paths(start: str, goal: str) -> List[str]:
     Returns:
         List[str]: 시작에서 목적지 노드까지 가는 모든 경로
     """
-    
+    # (현재 노드, 현재 까지 거친 경로)로 이루어진 튜플
     stack = [(start, [start])]
     paths = []
 
@@ -39,14 +39,12 @@ def get_paths(start: str, goal: str) -> List[str]:
 
 def get_cost_of_paths(paths: List[str]) -> List[int]:
     """get_paths(start, goal)를 통해 구한 모든 경로에서 거리(비용)를 구함
-
     Args:
         paths (List[str]): start에서 goal로 가는 모든 경로
 
     Returns:
         List[int]: 각 경로 별 사용된 코스트(거리)
     """
-
     result = []
 
     for path in paths:
