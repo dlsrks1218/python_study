@@ -24,43 +24,50 @@ graph = {
     "커피숍": {"레스토랑":3, "은행":5, "학원":8} 
 }
 
-def dfs_paths(start: str, goal: str) -> List:
-    stack = [(start, [start])]
-    paths = []
+def find_min_cost_path(src, dest):
+    path = [dest]
+    for key, val in graph.items():
+        if dest in val:
+            path.insert(0, key)
+    
+find_min_cost_path('집', '은행')
+# def dfs_paths(start: str, goal: str) -> List:
+#     stack = [(start, [start])]
+#     paths = []
 
-    while stack:
-        n, path = stack.pop()
-        if n == goal:
-            paths.append(path)
-        else:
-            for m in set(graph[n].keys()) - set(path):
-            # for m in set(graph[n].keys()):    
-                stack.append((m, path + [m]))
+#     while stack:
+#         n, path = stack.pop()
+#         if n == goal:
+#             paths.append(path)
+#         else:
+#             for m in set(graph[n].keys()) - set(path):
+#             # for m in set(graph[n].keys()):    
+#                 stack.append((m, path + [m]))
 
-    return paths
+#     return paths
 
-def get_cost_of_paths(paths: List) -> List:
-    result = []
-    for path in paths:
-        cost = 0
-        for i in range(len(path)-1):
-            # print(graph[path[i]][path[i+1]])
-            cost += graph[path[i]][path[i+1]]
-        result.append(cost)
-    return result
+# def get_cost_of_paths(paths: List) -> List:
+#     result = []
+#     for path in paths:
+#         cost = 0
+#         for i in range(len(path)-1):
+#             # print(graph[path[i]][path[i+1]])
+#             cost += graph[path[i]][path[i+1]]
+#         result.append(cost)
+#     return result
 
-if __name__ == '__main__':
-    """
-    * src -> dest로 가는 모든 경우의 수와 그에 대한 비용 구하기
-    """
-    # paths = dfs_paths(graph, 'A', 'D')
-    paths = dfs_paths('집', '은행')
-    # print(paths)
+# if __name__ == '__main__':
+#     """
+#     * src -> dest로 가는 모든 경우의 수와 그에 대한 비용 구하기
+#     """
+#     # paths = dfs_paths(graph, 'A', 'D')
+#     paths = dfs_paths('집', '은행')
+#     # print(paths)
 
-    # for path in paths:
-    #     print(path)
-    # print('*'*30)
-    costs = get_cost_of_paths(paths)
-    # print(costs)
-    min_cost_index = costs.index(min(costs))
-    print('최단 경로 : {}, 비용 : {}'.format(paths[min_cost_index], min(costs)))
+#     # for path in paths:
+#     #     print(path)
+#     # print('*'*30)
+#     costs = get_cost_of_paths(paths)
+#     # print(costs)
+#     min_cost_index = costs.index(min(costs))
+#     print('최단 경로 : {}, 비용 : {}'.format(paths[min_cost_index], min(costs)))
