@@ -54,6 +54,7 @@ def get_cost_of_paths(paths: List[str]) -> List[int]:
         result.append(cost)
     return result
 
+
 if __name__ == '__main__':
     paths = get_paths('집', '슈퍼마켓')
     costs = get_cost_of_paths(paths)
