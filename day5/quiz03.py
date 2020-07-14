@@ -56,17 +56,21 @@ def get_cost_of_paths(paths: List[str]) -> List[int]:
 
 
 if __name__ == '__main__':
-    paths = get_paths('집', '커피숍')
-    costs = get_cost_of_paths(paths)
+    for key, val in graph.items():
+        if key == '집':
+            continue
+        paths = get_paths('집', key)
+        costs = get_cost_of_paths(paths)
 
-    for path, cost in zip(paths, costs):
-        print(path, cost)
-        
-    min_cost_index = costs.index(min(costs))
-    print('최단 경로 : {}, 비용 : {}'.format(paths[min_cost_index], min(costs)))
+        # for path, cost in zip(paths, costs):
+        #     print(path, cost)
+            
+        min_cost_index = costs.index(min(costs))
+        print('='*50)
+        print('<{}>에서 <{}> 까지의 최단 경로'.format(paths[min_cost_index][0], paths[min_cost_index][-1]))
+        print('최단 경로 : {}\n비용 : {}'.format(paths[min_cost_index], min(costs)))
 
-"""
-'집', '커피숍' 결과
+""" '집', '커피숍' 결과
 ['집', '슈퍼마켓', '레스토랑', '커피숍'] 16
 ['집', '슈퍼마켓', '학원', '커피숍'] 25
 ['집', '슈퍼마켓', '미용실', '은행', '커피숍'] 29
@@ -82,4 +86,17 @@ if __name__ == '__main__':
 ['집', '미용실', '은행', '슈퍼마켓', '학원', '커피숍'] 41
 ['집', '미용실', '은행', '커피숍'] 21
 최단 경로 : ['집', '미용실', '슈퍼마켓', '레스토랑', '커피숍'], 비용 : 14
+"""
+
+""" '집' '슈퍼마켓' 결과
+['집', '슈퍼마켓'] 10
+['집', '미용실', '슈퍼마켓'] 8
+['집', '미용실', '은행', '슈퍼마켓'] 26
+['집', '미용실', '은행', '커피숍', '레스토랑', '슈퍼마켓'] 27
+['집', '미용실', '은행', '커피숍', '학원', '슈퍼마켓'] 36
+['집', '학원', '슈퍼마켓'] 16
+['집', '학원', '커피숍', '은행', '슈퍼마켓'] 32
+['집', '학원', '커피숍', '은행', '미용실', '슈퍼마켓'] 36
+['집', '학원', '커피숍', '레스토랑', '슈퍼마켓'] 23
+최단 경로 : ['집', '미용실', '슈퍼마켓'], 비용 : 8
 """

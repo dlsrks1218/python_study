@@ -33,12 +33,11 @@ def dice_game() -> None:
     """게임 결과를 난수 : {}, 상금 {} 형태로 출력
     """
     random_numbers = [random.randrange(1, 7) for _ in range(3)]
-    print('난수 : {}, '.format(random_numbers), end='')
     reward = get_reward(random_numbers)
+    print('난수 : {}, '.format(random_numbers), end='')
     print('상금 : {}'.format(reward))
 
 if __name__ == '__main__':
     for i in range(10):
         print('{}번째 게임'.format(i+1), end=' - ')
         dice_game()
-
