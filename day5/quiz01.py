@@ -1,5 +1,23 @@
 import os
 from typing import List
+import string
+
+def count_unique_words(input_dir: str) -> dict:
+    words = {}
+    # punctuation -> !"#$%&'()*+,-./:;<=>?@[\]^_`{|}~
+    strip = string.whitespace + string.punctuation + string.digits + "\"'"
+    with open(input_dir, encoding='utf-8') as input_file:
+        for line in input_file:
+            for word in line.split():
+                word = word.strip(strip)
+            if len(word) > 2:
+                words[word] = words.get(word, 0) + 1
+    
+    for word in sorted(words):
+        print('{} : {}번'.format(word, words[word]))
+
+    return words
+
 
 def get_ascii() -> List[int]:
     """ 특수 문자를 걸러내기 위한 아스키코드로 된 리스트 반환
@@ -19,7 +37,7 @@ def get_ascii() -> List[int]:
     return chk
 
 
-def word_count(input_dir: str, output_dir: str) -> None:
+def word_count(input_dir: str, output_dir: str) -> dict:
     """모든 단어의 빈도 세기
 
     Args:
@@ -79,14 +97,19 @@ def word_count(input_dir: str, output_dir: str) -> None:
             #     print('최소 빈출 단어 -> {} : {}'.format(key, val))
         
         # output_file에 결과 쓰기
-        word_dict = sorted(word_dict.items())
-        for item in word_dict:
+        word_dict_lst = sorted(word_dict.items())
+        for item in word_dict_lst:
             output_file.write(str(item))
+
+    return word_dict
 
 
 if __name__ == '__main__':
     # 수정 시 본인 파일의 절대경로로 바꿀것
     input_dir = os.getcwd() + '/day5/' + 'the_little_prince.txt'
     output_dir = os.getcwd() + '/day5/' + 'word_result.txt'
-    word_count(input_dir, output_dir)
+    words = word_count(input_dir, output_dir)
     print('word count 완료, 파일에 결과를 저장하였습니다.')
+    # print(words['you'])
+
+    # words = count_unique_words(input_dir)
