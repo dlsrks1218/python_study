@@ -1,20 +1,22 @@
+import os, sys, csv
+
 class Student:
     def __init__(self, name: str, kor: int, eng: int, mat: int) -> None:
         self.name = name
         self.kor = kor
         self.eng = eng
         self.mat = mat
-    
+
+
     def calc_sum(self) -> int:
         return self.kor + self.eng + self.mat
+
 
     def calc_avg(self) -> float:
         return self.calc_sum() / 3
 
 
-import os, sys, csv
-
-def enter_score(score):
+def enter_score(score: dict) -> dict:
     """
     # 이름,국어,영어,수학
     # 각 과목 점수는 0~100 사이
@@ -44,7 +46,8 @@ def enter_score(score):
     # score에 총점, 평균 추가 후 총점 높은 순으로 정렬
     return score
 
-def calc_score(score):
+
+def calc_score(score: dict) -> None:
     for user in score:
         tmp = score[user]
         total = tmp[0] + tmp[1] + tmp[2]
@@ -53,23 +56,29 @@ def calc_score(score):
             tmp.extend([total, avg])
     return sorted(score.items(), key = lambda x: x[1][-2], reverse=True)
 
-def show_all_score(score) ->int:
-    if not score:
-        return -1
-    else:
-        print('#'*50)
-        print('이름\t국어\t영어\t수학\t총점\t평균')
-        print('#'*50)
-        # print('{}\t{}\t{}\t{}\t{}\t{:.4f}'.format(user, \
-        #     tmp[0], tmp[1], tmp[2], total, avg))
-        new_list = score.items()
-        for user in new_list:
-            print(user[0], '\t', seperate_score(user[1]))
 
-def search_user_score(score, search_user):
+def show_all_score(score: dict) -> None:
     try:
         if not score:
-            return -1
+            raise Exception
+        else:
+            print('#'*50)
+            print('이름\t국어\t영어\t수학\t총점\t평균')
+            print('#'*50)
+            # print('{}\t{}\t{}\t{}\t{}\t{:.4f}'.format(user, \
+            #     tmp[0], tmp[1], tmp[2], total, avg))
+            new_list = score.items()
+            for user in new_list:
+                print(user[0], '\t', seperate_score(user[1]))
+    except Exception as ex:
+        print('등록된 사용자가 없습니다.')
+        enter_score(score)
+
+
+def search_user_score(score: dict, search_user: str) -> None:
+    try:
+        if search_user not in score.keys():
+            raise Exception
         tmp = score[search_user]
         print('#'*50)
         print('이름\t국어\t영어\t수학\t총점\t평균')
@@ -77,11 +86,13 @@ def search_user_score(score, search_user):
         # print('{}\t{}\t{}\t{}\t{}\t{:.4f}'.format(search_user, \
         #     tmp[0], tmp[1], tmp[2], total, avg)) 
         print(search_user, '\t', seperate_score(score[search_user]))
-    except:
+    except Exception as ex:
+        # print(ex)
         search_user = input('사용자가 존재하지 않습니다. 다시 입력해주세요 -> ')
         search_user_score(score, search_user)
 
-def save_all_score(score: dict):
+
+def save_all_score(score: dict) -> None:
     dat_name = os.getcwd() + '/day4/score.dat'
     with open(dat_name, 'w', encoding='utf-8') as file:
         print(score)
@@ -97,6 +108,7 @@ def save_all_score(score: dict):
                 #     file.write('{},'.format(_num))
             file.write('\n')
 
+
 def load_all_score(score: dict) ->dict:
     load_score = {}
     dat_name = os.getcwd() + '/day4/score.dat'
@@ -108,13 +120,15 @@ def load_all_score(score: dict) ->dict:
         # print(item)
     return load_score
 
-def seperate_score(data: list):
+
+def seperate_score(data: list) -> None:
     result = ''
     for _num in range(len(data) - 1):
         result += str(data[_num]) + '\t'
     return result + ('%.4f' %(data[len(data) - 1]))
 
-def generate_report(input_file: str, output_file: str):
+
+def generate_report(input_file: str, output_file: str) -> None:
     header_list = ['이름', '총점', '평균']
     my_columns = [0, 4, 5] # USER1,100,90,80,270,90.00,
     with open(input_file, 'r', newline='') as csv_in_file:
@@ -128,6 +142,7 @@ def generate_report(input_file: str, output_file: str):
                     row_list_output.append(row[index_value])
                 filewriter.writerow(row_list_output)
 
+
 def start():
     score = {}
     while True:
@@ -140,19 +155,11 @@ def start():
             score = enter_score(score)
             score = dict(calc_score(score))
         elif cmd == 2:
-            if show_all_score(score) == -1:
-                print('데이터가 없습니다. 성적을 입력해주세요.\n')
-                continue
-            else:
-                show_all_score(score)
+            show_all_score(score)
         elif cmd == 3:
             # 입력값이 존재하지 않을 때 예외처리 하기!
             search_user = input('검색할 사용자명을 입력하세요 -> ')
-            if search_user_score(score, search_user) == -1:
-                print('데이터가 없습니다. 성적을 입력해주세요.\n')
-                continue
-            else:
-                search_user_score(score, search_user_score)
+            search_user_score(score, search_user)
         elif cmd == 4:
             save_all_score(score)
             print('### 파일을 저장했습니다.')
