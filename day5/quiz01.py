@@ -107,9 +107,9 @@ def word_count(input_dir: str, output_dir: str) -> dict:
 if __name__ == '__main__':
     # 수정 시 본인 파일의 절대경로로 바꿀것
     input_dir = os.getcwd() + '/day5/' + 'the_little_prince.txt'
-    output_dir = os.getcwd() + '/day5/' + 'word_result.txt'
-    words = word_count(input_dir, output_dir)
-    print('word count 완료, 파일에 결과를 저장하였습니다.')
+    # output_dir = os.getcwd() + '/day5/' + 'word_result.txt'
+    # words = word_count(input_dir, output_dir)
+    # print('word count 완료, 파일에 결과를 저장하였습니다.')
     # print(words['you'])
 
-    # words = count_unique_words(input_dir)
+    words = count_unique_words(input_dir)
