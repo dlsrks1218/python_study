@@ -1,0 +1,14 @@
+version: "3.1"
+services: 
+  python:
+    # docker run --name registry
+    container_name: module_project
+    # FROM python:3.7
+    image: python:3.7
+    # docker run -v ./:/root/module_project
+    volumes: 
+      - "./:/root/module_project"
+    # WORKDIR /root/module_project
+    working_dir: /root/module_project
+    # CMD ["python", "main.py"]
+    command: python main.py

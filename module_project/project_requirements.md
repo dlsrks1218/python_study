@@ -42,6 +42,10 @@
 
 * Docker  
 
+  * docker-compose로 python 컨테이너, DB 컨테이너 서비스 실행  
+
+  * 볼륨 마운트 기능으로 데이터는 로컬에 유지  
+
 * Linux, Shell Script  
 
 * Infrastructre as Code  
