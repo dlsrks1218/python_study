@@ -11,4 +11,4 @@ services:
     # WORKDIR /root/module_project
     working_dir: /root/module_project
     # CMD ["python", "main.py"]
-    command: python main.py
+    command: ./run.sh
