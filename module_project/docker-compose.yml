@@ -1,0 +1,25 @@
+version: '3.1'
+
+services:
+    python:
+        container_name: python
+        image: python:3.7
+        build:
+            context: .
+            dockerfile: ./Dockerfile
+        # volumes: 
+        #     - ./:/root/module_project
+        depends_on: 
+            - mysql
+        command: tail -f /dev/null
+
+    mysql:
+        container_name: mysql
+        image: mysql:5.7
+        volumes: 
+            - ./db_data:/root/module_project/db_data
+            - ./mysql_init_files/:/docker-entrypoint-initdb.d/
+        environment: 
+            - MYSQL_ALLOW_EMPTY_PASSWORD="true"
+        ports: 
+            - "3306:3306"
