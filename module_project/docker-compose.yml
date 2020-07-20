@@ -8,9 +8,10 @@ services:
             dockerfile: ./Dockerfile
         # volumes: 
         #     - ./:/root/module_project
+        command: tail -f /dev/null
+        # mysql 컨테이너가 있어야만 python 서비스가 작동된다
         depends_on: 
             - mysql
-        command: tail -f /dev/null
 
     mysql:
         container_name: mysql
