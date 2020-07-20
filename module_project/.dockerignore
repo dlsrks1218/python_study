@@ -1,0 +1,5 @@
+__pycache__
+project_requirements.md
+Dockerfile
+docker-compose.yml
+db_data/*
