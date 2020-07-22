@@ -1,3 +1,10 @@
+""" 추후 도커에 생성한 디비 사용한다면 아래와 같은 정보로 사용
+DB HOST : 127.0.0.1
+DB PORT : 13306 or 23306 or 33306
+DB Connection : hr madang <- root
+                tododb <- gihyo
+"""
+
 import pymysql as pm
 from typing import Callable
 from pymysql.connections import Connection as _Connection
