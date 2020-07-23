@@ -85,3 +85,11 @@
 2. sh 파일의 명령어를 실행하여,  
 
 3. 풀해온 프로젝트를 volume 마운트 시켜 컨테이너에서 프로젝트 실행  
+
+### 20200723 추가 사항  
+
+스웜 - 스택 - service - python program(replicas 2)
+     - 스택 - service - database (master 1, slave 2)
+     - 스택 - service - visalizer(replicas X)
+
+네트워크 - overlay 네트워크  
