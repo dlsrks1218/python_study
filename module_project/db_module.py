@@ -9,16 +9,17 @@ import pymysql as pm
 from typing import Callable
 from pymysql.connections import Connection as _Connection
 
-def get_connect(db_name: str) -> _Connection:
+def get_connect(hostname: str, db_name: str) -> _Connection:
     """mysql db Connection 객체를 반환
 
     Args:
+        hostname(str): host name
         db_name (str): database name
 
     Returns:
         _Connection: Callable[..., _Connection]
     """
-    db = pm.connect(host='127.0.0.1', port=3306, user='root', db=db_name, charset='utf8')
+    db = pm.connect(host=hostname, port=3306, user='root', db=db_name, charset='utf8')
     return db
 
 
@@ -27,14 +28,18 @@ def print_all_data(db: _Connection, table_name: str):
 
     Args:
         db (_Connection): Callable[..., _Connection]
+        table_name (str): table name
     """
     try:
         cursor = db.cursor()
         sql = "SELECT * FROM {}".format(table_name)
         cursor.execute(sql)
         result = cursor.fetchall()
-        for row_data in result:
-            print(row_data)
+        if not result:
+            print('데이터가 없습니다')
+        else:
+            for row_data in result:
+                print(row_data)
     finally:
         db.close()
 
@@ -44,5 +49,6 @@ def print_all_data(db: _Connection, table_name: str):
 # INSERT INTO student (name, kor, eng, mat, avg) VALUE("USER1", 100, 90, 80, 270.0);
 
 if __name__ == '__main__':
-    db = get_connect('student_db')
+    # mysql 컨테이너(이름 : mysql)의 student_db로 접속
+    db = get_connect('mysql', 'student_db')
     print_all_data(db, 'student')

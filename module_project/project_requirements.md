@@ -89,7 +89,7 @@
 ### 20200723 추가 사항  
 
 스웜 - 스택 - service - python program(replicas 2)
-     - 스택 - service - database (master 1, slave 2)
+     - 스택 - service - database (master 1, slave 2), manager에 master
      - 스택 - service - visualizer(replicas X)
 
 네트워크 - overlay 네트워크  
