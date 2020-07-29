@@ -18,9 +18,9 @@ services:
         container_name: mysql
         image: mysql:5.7
         restart: always
-        volumes:
+        # volumes:
             # docker의 db구조에서 약속된 형태로 여기에 넣은 sql이나 sh는 시작하자마자 구동한다.
-            - ./mysql_init_files/:/docker-entrypoint-initdb.d/
+            # - ./mysql_init_files/:/docker-entrypoint-initdb.d/
         environment: 
             - MYSQL_ALLOW_EMPTY_PASSWORD="true"
         ports: 
